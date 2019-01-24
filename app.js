@@ -21,6 +21,8 @@ app.post("/upload", function(req, res) {
 
   sampleFile.mv(uploadPath, function(err) {
     if (err) {
+      console.log(err);
+      throw err;
       console.log("\n\nsampleFile.mv error\n\n");
     }
     let options = {
