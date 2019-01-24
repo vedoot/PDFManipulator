@@ -10,7 +10,6 @@ trailer = PdfReader(inpfn)
 pages = trailer.pages
 for i in range(0, len(pages), 2):
     pages[i].Rotate  = 180
-print("I luv u")
 outdata = PdfWriter(outfn)
 outdata.trailer = trailer
 outdata.write()
