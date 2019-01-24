@@ -8,7 +8,7 @@ const app = express();
 app.use(fileUpload());
 
 app.get("/", function(req, res) {
-  console.log("\n\nUser connected\n\n");
+  console.log("\n\nUser connectedDDDDDD\n\n");
   res.sendFile(__dirname + "/UI/index.html");
 });
 
