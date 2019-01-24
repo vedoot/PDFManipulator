@@ -17,6 +17,7 @@ app.post("/upload", function(req, res) {
   let sampleFile = req.files.sampleFile;
   console.log("\n\nFile: " + sampleFile + "\n\n");
   var uploadPath = __dirname + '/uploads/' + sampleFile.name;
+  console.log("\n\nUPLOAD PATH: " + uploadPath + "\n\n");
 
   sampleFile.mv(uploadPath, function(err) {
     if (err) {
