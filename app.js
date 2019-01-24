@@ -31,14 +31,16 @@ app.post("/upload", function(req, res) {
         console.log("\n\nPythonShell rotate error\n\n");
       }
       console.log('finished');
+
+      var data =fs.readFileSync(__dirname + '/rotate.'+sampleFile.name);
+      res.contentType("application/pdf");
+      console.log("\n\nSetting content type header and sending\n\n");
+      res.send(data);
+      console.log("\n\nSent\n\n");
     });
   });
 
-  var data =fs.readFileSync( __dirname + '/rotate.'+sampleFile.name);
-  res.contentType("application/pdf");
-  console.log("\n\nSetting content type header and sending\n\n");
-  res.send(data);
-  console.log("\n\nSent\n\n");
+
 
 });
 
