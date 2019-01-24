@@ -26,7 +26,7 @@ app.post("/upload", function(req, res) {
     });
   });
 
-  var data =fs.readFileSync('./rotate.'+sampleFile.name);
+  var data =fs.readFileSync(__dirname + '/rotate.'+sampleFile.name);
   res.contentType("application/pdf");
   res.send(data);
 
