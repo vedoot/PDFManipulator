@@ -8,27 +8,36 @@ const app = express();
 app.use(fileUpload());
 
 app.get("/", function(req, res) {
+  console.log("\n\nUser connected\n\n");
   res.sendFile(__dirname + "/UI/index.html");
 });
 
 app.post("/upload", function(req, res) {
+  console.log("\n\nPDF uploaded\n\n");
   let sampleFile = req.files.sampleFile;
+  console.log("\n\nFile: " + sampleFile + "\n\n");
   var uploadPath = __dirname + '/uploads/' + sampleFile.name;
 
   sampleFile.mv(uploadPath, function(err) {
-    if (err) return res.status(500).send(err);
+    if (err) {
+      console.log("\n\nsampleFile.mv error\n\n");
+    }
     let options = {
       args: [uploadPath]
     };
     PythonShell.run('rotate.py', options, function(err) {
-      if (err) throw err;
+      if (err) {
+        console.log("\n\nPythonShell rotate error\n\n");
+      }
       console.log('finished');
     });
   });
 
   var data =fs.readFileSync(__dirname + '/rotate.'+sampleFile.name);
   res.contentType("application/pdf");
+  console.log("\n\nSetting content type header and sending\n\n");
   res.send(data);
+  console.log("\n\nSent\n\n");
 
 });
 
