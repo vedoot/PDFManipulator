@@ -9,14 +9,14 @@ app.use(fileUpload());
 
 app.get("/", function(req, res) {
   console.log("\n\nUser connectedDDDDDD\n\n");
-  res.sendFile(__dirname + "/UI/index.html");
+  res.sendFile( __dirname + "/UI/index.html");
 });
 
 app.post("/upload", function(req, res) {
   console.log("\n\nPDF uploaded\n\n");
   let sampleFile = req.files.sampleFile;
   console.log("\n\nFile: " + sampleFile + "\n\n");
-  var uploadPath = __dirname + '/uploads/' + sampleFile.name;
+  var uploadPath =  './uploads/' + sampleFile.name;
   console.log("\n\nUPLOAD PATH: " + uploadPath + "\n\n");
 
   sampleFile.mv(uploadPath, function(err) {
@@ -34,7 +34,7 @@ app.post("/upload", function(req, res) {
     });
   });
 
-  var data =fs.readFileSync(__dirname + '/rotate.'+sampleFile.name);
+  var data =fs.readFileSync( './rotate.'+sampleFile.name);
   res.contentType("application/pdf");
   console.log("\n\nSetting content type header and sending\n\n");
   res.send(data);
